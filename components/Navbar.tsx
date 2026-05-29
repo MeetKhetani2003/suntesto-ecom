@@ -1,42 +1,115 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, X, Minus, Plus } from 'lucide-react';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
+import { ShoppingBag, X, Minus, Plus, Menu } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '@/lib/CartContext';
 
 export const Navbar = () => {
   const { cart, setIsCartOpen } = useCart();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 50);
+  });
+
   return (
-    <motion.nav 
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1, delay: 0.5, ease: [0.33, 1, 0.68, 1] }}
-      className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-6 mix-blend-difference text-white"
-    >
-      <Link href="/">
-        <div className="text-2xl font-black tracking-tighter uppercase cursor-pointer hover:scale-105 transition-transform flex items-center gap-4">
-           <Image src="/logos/SUSTENTO_LOGO_WHITE.png" alt="Sustento" width={40} height={40} className="w-10 h-auto" />
-           Sustento
+    <>
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5, ease: [0.33, 1, 0.68, 1] }}
+        className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-8 py-4 md:py-6 transition-all duration-300 text-white ${
+          isScrolled 
+            ? 'bg-[#111]/80 backdrop-blur-md border-b border-white/10' 
+            : 'mix-blend-difference'
+        }`}
+      >
+        <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
+          <div className="text-2xl font-black tracking-tighter uppercase cursor-pointer hover:scale-105 transition-transform flex items-center gap-4 w-28 md:w-48">
+            <Image src="/logos/SUSTENTO_LOGO_WHITE.png" alt="Sustento" width={1000} height={1000} className="w-full h-auto object-contain" />
+          </div>
+        </Link>
+
+        <div className="flex gap-4 md:gap-10 items-center font-medium text-xs tracking-[0.2em] uppercase">
+          <Link href="/about" className="hidden md:block cursor-pointer hover:opacity-50 transition-opacity">About</Link>
+          <Link href="/products" className="hidden md:block cursor-pointer hover:opacity-50 transition-opacity">Products</Link>
+          <Link href="/contact" className="hidden md:block cursor-pointer hover:opacity-50 transition-opacity">Contact</Link>
+          <button
+            onClick={() => setIsCartOpen(true)}
+            className="flex items-center gap-3 border border-white/20 px-4 md:px-6 py-2 md:py-3 rounded-full hover:bg-white hover:text-black transition-all duration-500"
+          >
+            <ShoppingBag size={14} />
+            <span>Cart ({totalItems})</span>
+          </button>
+          
+          <button 
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="md:hidden flex items-center justify-center w-10 h-10 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all"
+          >
+            <Menu size={16} />
+          </button>
         </div>
-      </Link>
-      <div className="flex gap-10 items-center font-medium text-xs tracking-[0.2em] uppercase">
-        <Link href="/products" className="hidden md:block cursor-pointer hover:opacity-50 transition-opacity">Products</Link>
-        <button 
-          onClick={() => setIsCartOpen(true)}
-          className="flex items-center gap-3 border border-white/20 px-6 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-500"
-        >
-          <ShoppingBag size={14} />
-          <span>Cart ({totalItems})</span>
-        </button>
-      </div>
-    </motion.nav>
+      </motion.nav>
+
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: "-100%" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "-100%" }}
+            transition={{ duration: 0.7, ease: [0.33, 1, 0.68, 1] }}
+            className="fixed inset-0 z-[100] bg-[#111] text-white flex flex-col justify-center items-center"
+          >
+            <button 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="absolute top-6 right-6 md:top-8 md:right-8 w-12 h-12 flex items-center justify-center border border-white/20 rounded-full hover:bg-white hover:text-black transition-colors"
+            >
+              <X size={20} />
+            </button>
+            
+            <div className="flex flex-col items-center gap-12 text-center">
+              <div className="overflow-hidden">
+                <motion.div initial={{ y: 50 }} animate={{ y: 0 }} transition={{ delay: 0.3, duration: 0.5 }}>
+                  <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="text-4xl md:text-6xl font-black tracking-tighter uppercase hover:text-amber-200 transition-colors">
+                    Home
+                  </Link>
+                </motion.div>
+              </div>
+              <div className="overflow-hidden">
+                <motion.div initial={{ y: 50 }} animate={{ y: 0 }} transition={{ delay: 0.4, duration: 0.5 }}>
+                  <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="text-4xl md:text-6xl font-black tracking-tighter uppercase hover:text-amber-200 transition-colors">
+                    About
+                  </Link>
+                </motion.div>
+              </div>
+              <div className="overflow-hidden">
+                <motion.div initial={{ y: 50 }} animate={{ y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
+                  <Link href="/products" onClick={() => setIsMobileMenuOpen(false)} className="text-4xl md:text-6xl font-black tracking-tighter uppercase hover:text-amber-200 transition-colors">
+                    Products
+                  </Link>
+                </motion.div>
+              </div>
+              <div className="overflow-hidden">
+                <motion.div initial={{ y: 50 }} animate={{ y: 0 }} transition={{ delay: 0.6, duration: 0.5 }}>
+                  <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="text-4xl md:text-6xl font-black tracking-tighter uppercase hover:text-amber-200 transition-colors">
+                    Contact
+                  </Link>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
+
 
 export const CartDrawer = () => {
   const { isCartOpen, setIsCartOpen, cart, updateQuantity, cartTotal } = useCart();
@@ -81,7 +154,7 @@ export const CartDrawer = () => {
                     <div className="flex-1">
                       <h3 className="font-bold tracking-tighter uppercase text-lg">{item.name}</h3>
                       <p className="text-white/50 text-xs tracking-widest uppercase mb-3">${item.price.toFixed(2)}</p>
-                      
+
                       <div className="flex items-center gap-4">
                         <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-colors">
                           <Minus size={12} />

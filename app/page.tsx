@@ -129,21 +129,22 @@ const Hero = () => {
       {/* Huge Typography interacting with Scroll */}
       <motion.div 
         style={{ y, opacity }}
-        className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10"
+        className="absolute inset-0 flex flex-col items-center justify-between py-24 md:py-12 pointer-events-none z-10 overflow-hidden"
       >
         <motion.div 
-          style={{ x: useTransform(scrollYProgress, [0, 1], [0, -400]) }}
-          className="overflow-hidden"
+          style={{ x: useTransform(scrollYProgress, [0, 1], [0, -300]) }}
+          className="w-full flex justify-center md:justify-start md:pl-20"
         >
-          <h1 className="text-[14vw] leading-[0.8] font-black text-[#E2E2D9] tracking-tighter mix-blend-multiply">
+          <h1 className="text-[25vw] md:text-[16vw] leading-none font-black text-black/10 tracking-tighter">
             NATURE.
           </h1>
         </motion.div>
+        
         <motion.div 
-          style={{ x: useTransform(scrollYProgress, [0, 1], [0, 400]) }}
-          className="overflow-hidden ml-[10vw]"
+          style={{ x: useTransform(scrollYProgress, [0, 1], [0, 300]) }}
+          className="w-full flex justify-center md:justify-end md:pr-20"
         >
-          <h1 className="text-[14vw] leading-[0.8] font-black text-[#E2E2D9] tracking-tighter mix-blend-multiply">
+          <h1 className="text-[25vw] md:text-[16vw] leading-none font-black text-black/10 tracking-tighter">
             PRESERVED.
           </h1>
         </motion.div>
@@ -152,19 +153,19 @@ const Hero = () => {
       {/* Main Subject with Cinematic 3D */}
       <motion.div 
         style={{ opacity }}
-        className="z-20 relative w-[90vw] max-w-[900px] h-[80vh] perspective-[1200px]"
+        className="z-20 relative w-full h-[60vh] md:h-[80vh] flex items-center justify-center perspective-[1200px]"
       >
         <motion.div
           style={{ x: mouseX, y: mouseY, rotateX, rotateY }}
-          className="w-full h-full preserve-3d flex items-center justify-center"
+          className="w-[140vw] md:w-[90vw] max-w-[1400px] h-[120%] preserve-3d flex items-center justify-center relative mt-12"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <motion.img 
-            initial={{ scale: 1.2, filter: "blur(20px)", opacity: 0, y: 50 }}
-            animate={{ scale: 1, filter: "blur(0px)", opacity: 1, y: 0 }}
+            initial={{ scale: 1.3, filter: "blur(20px)", opacity: 0, y: 50 }}
+            animate={{ scale: 1.1, filter: "blur(0px)", opacity: 1, y: 0 }}
             transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
             src={IMAGES.mainHero} 
-            alt="Hero Pouch" 
+            alt="Hero Collection" 
             className="w-full h-full object-contain drop-shadow-[0_50px_50px_rgba(0,0,0,0.25)]"
             draggable="false"
           />

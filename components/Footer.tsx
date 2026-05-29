@@ -26,11 +26,11 @@ export const Footer = () => {
           </div>
           <div className="flex flex-col gap-6">
             <span className="font-bold uppercase tracking-[0.2em] text-xs mb-2 text-white/40">About</span>
-            <Link href="/" className="hover:text-amber-200 transition-colors tracking-wide">Our Story</Link>
+            <Link href="/about" className="hover:text-amber-200 transition-colors tracking-wide">Our Story</Link>
           </div>
           <div className="flex flex-col gap-6">
             <span className="font-bold uppercase tracking-[0.2em] text-xs mb-2 text-white/40">Support</span>
-            <a href="mailto:hello@sustento.com" className="hover:text-amber-200 transition-colors tracking-wide">Contact</a>
+            <Link href="/contact" className="hover:text-amber-200 transition-colors tracking-wide">Contact</Link>
           </div>
         </div>
       </div>

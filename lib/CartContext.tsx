@@ -12,6 +12,7 @@ interface CartContextType {
   addToCart: (product: Product) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
+  clearCart: () => void;
   isCartOpen: boolean;
   setIsCartOpen: (isOpen: boolean) => void;
   cartTotal: number;
@@ -38,6 +39,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const addToCart = (product: Product) => {
     setCart(prev => {
       const existing = prev.find(item => item.id === product.id);
+      const currentQty = existing ? existing.quantity : 0;
+      const maxStock = product.stock !== undefined ? product.stock : 100;
+      
+      if (currentQty >= maxStock) {
+        alert(`Cannot add more "${product.name}". Max available stock is ${maxStock}.`);
+        return prev;
+      }
+      
       if (existing) {
         return prev.map(item => item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item);
       }
@@ -55,13 +64,27 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       removeFromCart(id);
       return;
     }
-    setCart(prev => prev.map(item => item.id === id ? { ...item, quantity } : item));
+    setCart(prev => prev.map(item => {
+      if (item.id === id) {
+        const maxStock = item.stock !== undefined ? item.stock : 100;
+        if (quantity > maxStock) {
+          alert(`Only ${maxStock} bags of "${item.name}" are currently available in stock.`);
+          return { ...item, quantity: maxStock };
+        }
+        return { ...item, quantity };
+      }
+      return item;
+    }));
+  };
+
+  const clearCart = () => {
+    setCart([]);
   };
 
   const cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, isCartOpen, setIsCartOpen, cartTotal }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart, isCartOpen, setIsCartOpen, cartTotal }}>
       {children}
     </CartContext.Provider>
   );

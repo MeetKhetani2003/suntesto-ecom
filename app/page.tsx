@@ -348,7 +348,8 @@ const HorizontalProductShowcase = () => {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: targetRef });
   
-  const rawX = useTransform(scrollYProgress, [0, 1], ["0%", `-${(PRODUCTS.length - 1) * 100}vw`]);
+  const homepageProducts = PRODUCTS.slice(0, 6);
+  const rawX = useTransform(scrollYProgress, [0, 1], ["0%", `-${(homepageProducts.length - 1) * 100}vw`]);
   const x = useSpring(rawX, springConfig);
 
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -361,9 +362,9 @@ const HorizontalProductShowcase = () => {
 
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center">
         <motion.div style={{ x }} className="flex h-full w-[600vw]">
-          {PRODUCTS.map((product, index) => {
+          {homepageProducts.map((product, index) => {
             const textX = useTransform(scrollYProgress, 
-              [index / PRODUCTS.length, (index + 1) / PRODUCTS.length], 
+              [index / homepageProducts.length, (index + 1) / homepageProducts.length], 
               [100, -100]
             );
 

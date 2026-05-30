@@ -3,17 +3,41 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Footer } from '@/components/Footer';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Loader2 } from 'lucide-react';
 
 export default function ContactPage() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!name.trim() || !email.trim() || !message.trim()) return;
+
     setFormState('submitting');
-    setTimeout(() => {
-      setFormState('success');
-    }, 1500);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      });
+
+      if (res.ok) {
+        setFormState('success');
+        setName('');
+        setEmail('');
+        setMessage('');
+      } else {
+        const data = await res.json();
+        alert(data.error || 'Failed to submit inquiry. Please try again.');
+        setFormState('idle');
+      }
+    } catch (err) {
+      console.error('Contact submit error:', err);
+      alert('Network transmission error. Please check your connection.');
+      setFormState('idle');
+    }
   };
 
   return (
@@ -73,6 +97,12 @@ export default function ContactPage() {
                 </div>
                 <h2 className="text-4xl font-black tracking-tighter uppercase mb-4">Message Sent</h2>
                 <p className="text-gray-400 font-light text-xl">Thank you for reaching out. We will get back to you shortly.</p>
+                <button 
+                  onClick={() => setFormState('idle')}
+                  className="mt-8 px-6 py-2 border border-white/20 hover:border-white/60 text-xs font-bold uppercase tracking-wider rounded-full transition-colors text-white"
+                >
+                  Send another message
+                </button>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-12 bg-white p-12 rounded-[3rem] shadow-[0_30px_60px_rgba(0,0,0,0.05)] border border-black/5">
@@ -82,6 +112,8 @@ export default function ContactPage() {
                     type="text" 
                     id="name" 
                     required 
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     className="border-b-2 border-black/10 py-4 bg-transparent outline-none focus:border-black transition-colors text-xl font-medium"
                     placeholder="Jane Doe"
                   />
@@ -93,6 +125,8 @@ export default function ContactPage() {
                     type="email" 
                     id="email" 
                     required 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="border-b-2 border-black/10 py-4 bg-transparent outline-none focus:border-black transition-colors text-xl font-medium"
                     placeholder="jane@example.com"
                   />
@@ -104,6 +138,8 @@ export default function ContactPage() {
                     id="message" 
                     required 
                     rows={4}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     className="border-b-2 border-black/10 py-4 bg-transparent outline-none focus:border-black transition-colors text-xl font-medium resize-none"
                     placeholder="How can we help you?"
                   />
@@ -111,9 +147,19 @@ export default function ContactPage() {
 
                 <button 
                   disabled={formState === 'submitting'}
-                  className="w-full bg-[#111] text-white py-6 rounded-full font-bold uppercase tracking-[0.2em] text-sm hover:scale-[1.02] transition-transform flex items-center justify-center gap-4 disabled:opacity-50"
+                  className="w-full bg-[#111] text-white py-6 rounded-full font-bold uppercase tracking-[0.2em] text-sm hover:scale-[1.02] transition-transform flex items-center justify-center gap-4 disabled:opacity-50 cursor-pointer"
                 >
-                  {formState === 'submitting' ? 'Sending...' : 'Send Message'} <ArrowRight size={16} />
+                  {formState === 'submitting' ? (
+                    <div className="flex items-center gap-2">
+                      <Loader2 className="w-4 h-4 animate-spin text-white" />
+                      <span>Sending...</span>
+                    </div>
+                  ) : (
+                    <>
+                      <span>Send Message</span>
+                      <ArrowRight size={16} />
+                    </>
+                  )}
                 </button>
               </form>
             )}

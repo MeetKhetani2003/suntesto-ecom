@@ -1,0 +1,552 @@
+{
+  "users": [
+    {
+      "email": "meetkhetani1111@gmail.com",
+      "name": "Meet Khetani",
+      "picture": "",
+      "phone": "+1 (555) 382-9901",
+      "address": "128 Nature Way, Orchard Valley, CA 90210",
+      "tier": "Gold Tier Member",
+      "joined": "May 2026",
+      "updatedAt": "2026-05-30T11:49:47.908Z",
+      "_id": "mock-1780138815389"
+    }
+  ],
+  "orders": [
+    {
+      "id": "order_SvYv5oMUARqwBc",
+      "email": "meetkhetani1111@gmail.com",
+      "date": "May 30, 2026",
+      "total": 12.539200000000001,
+      "status": "Processing",
+      "items": [
+        {
+          "id": "choco-strawberry",
+          "name": "Choco Strawberry",
+          "price": 6.99,
+          "quantity": 1,
+          "image": "/packagings/chocolate-hero.png",
+          "color": "#FEE2E2"
+        }
+      ],
+      "createdAt": "2026-05-30T11:40:05.752Z",
+      "_id": "mock-1780141205752"
+    }
+  ],
+  "products": [
+    {
+      "id": "mango",
+      "name": "Mango",
+      "image": "/api/images/mango_hero.png",
+      "color": "#FDE68A",
+      "darkColor": "#D97706",
+      "desc": "Tropical sweetness, perfectly preserved.",
+      "price": 4.99,
+      "originalPrice": 5.99,
+      "category": "Regular frozen",
+      "gallery": [
+        "/api/images/mango_hero.png",
+        "/api/images/main_hero.png"
+      ],
+      "details": {
+        "calories": "90 kcal",
+        "sugar": "16g",
+        "shelfLife": "18 Months",
+        "ingredients": "100% Organic Freeze-Dried Mango Slices",
+        "origin": "Ecuador"
+      },
+      "reviews": [
+        {
+          "id": "m1",
+          "userName": "Emma Watson",
+          "rating": 5,
+          "comment": "Hands down the best snack! Crunchy, sweet, and pure mango bliss.",
+          "date": "May 18, 2026"
+        },
+        {
+          "id": "m2",
+          "userName": "Liam Neeson",
+          "rating": 4,
+          "comment": "Very intense mango flavor, feels extremely healthy. Will order again.",
+          "date": "April 29, 2026"
+        }
+      ],
+      "_id": "mock-1780141787927-0"
+    },
+    {
+      "id": "banana",
+      "name": "Banana",
+      "image": "/api/images/banana_hero.png",
+      "color": "#FEF08A",
+      "darkColor": "#CA8A04",
+      "desc": "The classic crunch you never knew you needed.",
+      "price": 4.99,
+      "originalPrice": 5.99,
+      "category": "Regular frozen",
+      "gallery": [
+        "/api/images/banana_hero.png",
+        "/api/images/main_hero.png"
+      ],
+      "details": {
+        "calories": "105 kcal",
+        "sugar": "18g",
+        "shelfLife": "18 Months",
+        "ingredients": "100% Organic Freeze-Dried Banana Slices",
+        "origin": "Costa Rica"
+      },
+      "reviews": [
+        {
+          "id": "b1",
+          "userName": "Tim Cook",
+          "rating": 5,
+          "comment": "Excellent texture. Great for cereal bowls or snacking on-the-go.",
+          "date": "May 05, 2026"
+        }
+      ],
+      "_id": "mock-1780141787927-1"
+    },
+    {
+      "id": "strawberry",
+      "name": "Strawberry",
+      "image": "/api/images/strawberry_hero.png",
+      "color": "#FECDD3",
+      "darkColor": "#BE123C",
+      "desc": "Sweet, tart, and undeniably crispy.",
+      "price": 5.99,
+      "originalPrice": 6.99,
+      "category": "Regular frozen",
+      "gallery": [
+        "/api/images/strawberry_hero.png",
+        "/api/images/main_hero.png"
+      ],
+      "details": {
+        "calories": "60 kcal",
+        "sugar": "10g",
+        "shelfLife": "18 Months",
+        "ingredients": "100% Organic Freeze-Dried Strawberry Slices",
+        "origin": "California"
+      },
+      "reviews": [
+        {
+          "id": "s1",
+          "userName": "Jessica Alba",
+          "rating": 5,
+          "comment": "Unbelievable texture. It melts in your mouth and pops with tart strawberry flavor.",
+          "date": "May 20, 2026"
+        },
+        {
+          "id": "s2",
+          "userName": "Robert Downey",
+          "rating": 5,
+          "comment": "My kids love these so much! Incredible healthy alternative to candy.",
+          "date": "May 11, 2026"
+        }
+      ],
+      "_id": "mock-1780141787927-2"
+    },
+    {
+      "id": "pineapple",
+      "name": "Pineapple",
+      "image": "/api/images/pineapple-hero.png",
+      "color": "#FEF9C3",
+      "darkColor": "#A16207",
+      "desc": "A zesty explosion in every bite.",
+      "price": 5.49,
+      "originalPrice": 6.49,
+      "category": "Regular frozen",
+      "gallery": [
+        "/api/images/pineapple-hero.png",
+        "/api/images/main_hero.png"
+      ],
+      "details": {
+        "calories": "80 kcal",
+        "sugar": "14g",
+        "shelfLife": "18 Months",
+        "ingredients": "100% Organic Freeze-Dried Pineapple Chunks",
+        "origin": "Hawaii"
+      },
+      "reviews": [
+        {
+          "id": "p1",
+          "userName": "Gal Gadot",
+          "rating": 4,
+          "comment": "Extremely tangy! Feels like a burst of tropical summer in every crunch.",
+          "date": "May 22, 2026"
+        }
+      ],
+      "_id": "mock-1780141787927-3"
+    },
+    {
+      "id": "lemon",
+      "name": "Lemon",
+      "image": "/api/images/lemon-hero.png",
+      "color": "#D9F99D",
+      "darkColor": "#4D7C0F",
+      "desc": "Tangy, sharp, and refreshingly crunchy.",
+      "price": 4.99,
+      "originalPrice": 5.99,
+      "category": "Regular frozen",
+      "gallery": [
+        "/api/images/lemon-hero.png",
+        "/api/images/main_hero.png"
+      ],
+      "details": {
+        "calories": "30 kcal",
+        "sugar": "4g",
+        "shelfLife": "18 Months",
+        "ingredients": "100% Organic Freeze-Dried Lemon Slices",
+        "origin": "Spain"
+      },
+      "reviews": [
+        {
+          "id": "l1",
+          "userName": "Gordon Ramsay",
+          "rating": 5,
+          "comment": "Perfect addition to a cup of hot water or iced tea. Crispy, sour, and absolutely phenomenal.",
+          "date": "May 27, 2026"
+        }
+      ],
+      "_id": "mock-1780141787927-4"
+    },
+    {
+      "id": "choco-strawberry",
+      "name": "Choco Strawberry",
+      "image": "/api/images/chocolate-hero.png",
+      "color": "#FEE2E2",
+      "darkColor": "#451A03",
+      "desc": "Premium chocolate meets tart strawberry.",
+      "price": 6.99,
+      "originalPrice": 8.49,
+      "category": "chocolate coated fruits",
+      "isDark": true,
+      "gallery": [
+        "/api/images/chocolate-hero.png",
+        "/api/images/strawberry_hero.png",
+        "/api/images/main_hero.png"
+      ],
+      "details": {
+        "calories": "140 kcal",
+        "sugar": "15g",
+        "shelfLife": "12 Months",
+        "ingredients": "Freeze-Dried Strawberries, Premium Dark Belgian Chocolate (Cocoa Mass, Sugar, Cocoa Butter)",
+        "origin": "Belgium / California"
+      },
+      "reviews": [
+        {
+          "id": "cs1",
+          "userName": "Sophia Loren",
+          "rating": 5,
+          "comment": "Chocolate and strawberry is a match made in heaven. The crunch is sublime.",
+          "date": "May 25, 2026"
+        },
+        {
+          "id": "cs2",
+          "userName": "Christian Bale",
+          "rating": 4,
+          "comment": "Incredibly delicious, though I wish there were more pieces in a single bag.",
+          "date": "May 14, 2026"
+        }
+      ],
+      "_id": "mock-1780141787927-5"
+    },
+    {
+      "id": "choco-banana",
+      "name": "Choco Banana",
+      "image": "/api/images/banana_hero.png",
+      "color": "#FEF3C7",
+      "darkColor": "#78350F",
+      "desc": "Slices of banana covered in rich chocolate.",
+      "price": 6.99,
+      "originalPrice": 7.99,
+      "category": "chocolate coated fruits",
+      "gallery": [
+        "/api/images/banana_hero.png",
+        "/api/images/chocolate-hero.png"
+      ],
+      "details": {
+        "calories": "160 kcal",
+        "sugar": "16g",
+        "shelfLife": "12 Months",
+        "ingredients": "Freeze-Dried Banana Slices, Dark Milk Chocolate Coating",
+        "origin": "Ecuador / Belgium"
+      },
+      "reviews": [],
+      "_id": "mock-1780141787927-6"
+    },
+    {
+      "id": "choco-mango",
+      "name": "Choco Mango",
+      "image": "/api/images/mango_hero.png",
+      "color": "#FFEDD5",
+      "darkColor": "#9A3412",
+      "desc": "Freeze-dried mango half-dipped in Belgian chocolate.",
+      "price": 7.49,
+      "originalPrice": 8.99,
+      "category": "chocolate coated fruits",
+      "gallery": [
+        "/api/images/mango_hero.png",
+        "/api/images/chocolate-hero.png"
+      ],
+      "details": {
+        "calories": "150 kcal",
+        "sugar": "17g",
+        "shelfLife": "12 Months",
+        "ingredients": "Freeze-Dried Mango Chews, Premium White & Dark Chocolate",
+        "origin": "Mexico"
+      },
+      "reviews": [],
+      "_id": "mock-1780141787927-7"
+    },
+    {
+      "id": "strawberry-powder",
+      "name": "Strawberry Powder",
+      "image": "/api/images/strawberry_hero.png",
+      "color": "#FCE7F3",
+      "darkColor": "#9D174D",
+      "desc": "100% pure freeze-dried strawberry powder.",
+      "price": 8.99,
+      "originalPrice": 10.99,
+      "category": "Fruit Powder",
+      "gallery": [
+        "/api/images/strawberry_hero.png",
+        "/api/images/main_hero.png"
+      ],
+      "details": {
+        "calories": "70 kcal",
+        "sugar": "11g",
+        "shelfLife": "24 Months",
+        "ingredients": "100% Organic Freeze-Dried Strawberry Dust",
+        "origin": "USA"
+      },
+      "reviews": [
+        {
+          "id": "sp1",
+          "userName": "Martha Stewart",
+          "rating": 5,
+          "comment": "Absolutely brilliant for frosting coloring and flavoring. The taste is remarkably pure.",
+          "date": "May 02, 2026"
+        }
+      ],
+      "_id": "mock-1780141787927-8"
+    },
+    {
+      "id": "mango-powder",
+      "name": "Mango Powder",
+      "image": "/api/images/mango_hero.png",
+      "color": "#FEF3C7",
+      "darkColor": "#B45309",
+      "desc": "Rich tropical mango ground into concentrated powder.",
+      "price": 8.99,
+      "originalPrice": 10.99,
+      "category": "Fruit Powder",
+      "gallery": [
+        "/api/images/mango_hero.png",
+        "/api/images/main_hero.png"
+      ],
+      "details": {
+        "calories": "75 kcal",
+        "sugar": "13g",
+        "shelfLife": "24 Months",
+        "ingredients": "100% Organic Freeze-Dried Mango Dust",
+        "origin": "Mexico"
+      },
+      "reviews": [],
+      "_id": "mock-1780141787927-9"
+    },
+    {
+      "id": "lemon-powder",
+      "name": "Lemon Powder",
+      "image": "/api/images/lemon-hero.png",
+      "color": "#FEF9C3",
+      "darkColor": "#854D0E",
+      "desc": "Zesty freeze-dried lemon powder.",
+      "price": 7.99,
+      "originalPrice": 9.49,
+      "category": "Fruit Powder",
+      "gallery": [
+        "/api/images/lemon-hero.png",
+        "/api/images/main_hero.png"
+      ],
+      "details": {
+        "calories": "35 kcal",
+        "sugar": "3g",
+        "shelfLife": "24 Months",
+        "ingredients": "100% Organic Freeze-Dried Lemon Dust",
+        "origin": "Spain"
+      },
+      "reviews": [],
+      "_id": "mock-1780141787927-10"
+    },
+    {
+      "id": "bulk-frozen-pack",
+      "name": "Bulk Frozen Mix Pack",
+      "image": "/api/images/main_hero.png",
+      "color": "#E0F2FE",
+      "darkColor": "#0369A1",
+      "desc": "1kg family-sized value pack of assorted freeze-dried fruits.",
+      "price": 49.99,
+      "originalPrice": 59.99,
+      "category": "Bulk order Listing",
+      "gallery": [
+        "/api/images/main_hero.png",
+        "/api/images/mango_hero.png",
+        "/api/images/strawberry_hero.png"
+      ],
+      "details": {
+        "calories": "85 kcal per serving",
+        "sugar": "14g",
+        "shelfLife": "18 Months",
+        "ingredients": "Organic Freeze-Dried Assorted Fruit Blend (Mango, Strawberry, Banana)",
+        "origin": "Multisource"
+      },
+      "reviews": [],
+      "_id": "mock-1780141787927-11"
+    },
+    {
+      "id": "bulk-variety-box",
+      "name": "Bulk Variety Box",
+      "image": "/api/images/main_hero.png",
+      "color": "#F1F5F9",
+      "darkColor": "#334155",
+      "desc": "Box of 24 individual single-serving pouches.",
+      "price": 59.99,
+      "originalPrice": 71.99,
+      "category": "Bulk order Listing",
+      "gallery": [
+        "/api/images/main_hero.png",
+        "/api/images/pineapple-hero.png",
+        "/api/images/lemon-hero.png"
+      ],
+      "details": {
+        "calories": "Varies",
+        "sugar": "Varies",
+        "shelfLife": "18 Months",
+        "ingredients": "24 pouches of assortments (Mango, Banana, Strawberry, Lemon, Pineapple)",
+        "origin": "Multisource"
+      },
+      "reviews": [],
+      "_id": "mock-1780141787927-12"
+    },
+    {
+      "id": "taster-combo-pack",
+      "name": "Taster Combo Pack",
+      "image": "/api/images/main_hero.png",
+      "color": "#E0F2FE",
+      "darkColor": "#0369A1",
+      "desc": "Includes 5 signature packs of Mango, Banana, Strawberry, Pineapple, and Lemon.",
+      "price": 22.99,
+      "originalPrice": 24.99,
+      "category": "Combo of Products",
+      "gallery": [
+        "/api/images/main_hero.png",
+        "/api/images/strawberry_hero.png",
+        "/api/images/lemon-hero.png"
+      ],
+      "details": {
+        "calories": "Varies by pack",
+        "sugar": "Varies by pack",
+        "shelfLife": "18 Months",
+        "ingredients": "5 pouch variety pack of 100% freeze-dried fruits",
+        "origin": "Multisource"
+      },
+      "reviews": [],
+      "_id": "mock-1780141787927-13"
+    },
+    {
+      "id": "choco-lover-combo",
+      "name": "Choco Lover's Combo",
+      "image": "/api/images/chocolate-hero.png",
+      "color": "#FAE8FF",
+      "darkColor": "#701A75",
+      "desc": "Double chocolate-coated strawberries and double chocolate bananas.",
+      "price": 18.99,
+      "originalPrice": 22.99,
+      "category": "Combo of Products",
+      "gallery": [
+        "/api/images/chocolate-hero.png",
+        "/api/images/banana_hero.png"
+      ],
+      "details": {
+        "calories": "150 kcal average",
+        "sugar": "16g",
+        "shelfLife": "12 Months",
+        "ingredients": "Assortment of Choco Strawberry and Choco Banana pouches",
+        "origin": "Multisource"
+      },
+      "reviews": [],
+      "_id": "mock-1780141787927-14"
+    }
+  ],
+  "files": [
+    {
+      "filename": "banana_hero.png",
+      "contentType": "image/png",
+      "uploadDate": "2026-05-30T11:00:15.602Z"
+    },
+    {
+      "filename": "chocolate-hero.png",
+      "contentType": "image/png",
+      "uploadDate": "2026-05-30T11:00:15.605Z"
+    },
+    {
+      "filename": "lemon-hero.png",
+      "contentType": "image/png",
+      "uploadDate": "2026-05-30T11:00:15.608Z"
+    },
+    {
+      "filename": "main_hero.jpeg",
+      "contentType": "image/jpeg",
+      "uploadDate": "2026-05-30T11:00:15.612Z"
+    },
+    {
+      "filename": "main_hero.png",
+      "contentType": "image/png",
+      "uploadDate": "2026-05-30T11:00:15.617Z"
+    },
+    {
+      "filename": "mango_hero.png",
+      "contentType": "image/png",
+      "uploadDate": "2026-05-30T11:00:15.620Z"
+    },
+    {
+      "filename": "pineapple-hero.png",
+      "contentType": "image/png",
+      "uploadDate": "2026-05-30T11:00:15.624Z"
+    },
+    {
+      "filename": "strawberry_hero.png",
+      "contentType": "image/png",
+      "uploadDate": "2026-05-30T11:00:15.628Z"
+    },
+    {
+      "filename": "SUSTENTO_POUCH_BANANA.jpg",
+      "contentType": "image/jpeg",
+      "uploadDate": "2026-05-30T11:00:15.633Z"
+    },
+    {
+      "filename": "SUSTENTO_POUCH_CHOCOLATE STRAWBERRY.jpg",
+      "contentType": "image/jpeg",
+      "uploadDate": "2026-05-30T11:00:15.638Z"
+    },
+    {
+      "filename": "SUSTENTO_POUCH_LEMON.jpg",
+      "contentType": "image/jpeg",
+      "uploadDate": "2026-05-30T11:00:15.643Z"
+    },
+    {
+      "filename": "SUSTENTO_POUCH_MANGO.jpg",
+      "contentType": "image/jpeg",
+      "uploadDate": "2026-05-30T11:00:15.649Z"
+    },
+    {
+      "filename": "SUSTENTO_POUCH_PINEAPPLE.jpg",
+      "contentType": "image/jpeg",
+      "uploadDate": "2026-05-30T11:00:15.653Z"
+    },
+    {
+      "filename": "SUSTENTO_POUCH_STRAWBERRY.jpg",
+      "contentType": "image/jpeg",
+      "uploadDate": "2026-05-30T11:00:15.658Z"
+    }
+  ]
+}

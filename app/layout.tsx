@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "@/lib/AuthContext";
 import { CartProvider } from "@/lib/CartContext";
-import { Navbar, CartDrawer } from "@/components/Navbar";
+import { ConditionalNavbar } from "@/components/ConditionalNavbar";
 import { CustomCursor, NoiseOverlay } from "@/components/UI";
 
 const geistSans = Geist({
@@ -22,24 +23,25 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  }: Readonly<{
+    children: React.ReactNode;
+  }>) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased bg-[#111]`}
     >
       <body className="min-h-full flex flex-col font-sans selection:bg-amber-200 selection:text-black cursor-auto md:cursor-none text-white bg-[#111]">
-        <CartProvider>
-          <CustomCursor />
-          <NoiseOverlay />
-          <Navbar />
-          <CartDrawer />
-          <div className="flex-1 flex flex-col relative z-10">
-            {children}
-          </div>
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <CustomCursor />
+            <NoiseOverlay />
+            <ConditionalNavbar />
+            <div className="flex-1 flex flex-col relative z-10">
+              {children}
+            </div>
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

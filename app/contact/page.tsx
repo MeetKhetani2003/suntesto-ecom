@@ -9,18 +9,22 @@ export default function ContactPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [inquiryReason, setInquiryReason] = useState('Bulk Inquiry');
+  const [otherReason, setOtherReason] = useState('');
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !email.trim() || !message.trim()) return;
+    if (inquiryReason === 'Other Reason' && !otherReason.trim()) return;
 
     setFormState('submitting');
     try {
+      const finalReason = inquiryReason === 'Other Reason' ? otherReason : inquiryReason;
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message })
+        body: JSON.stringify({ name, email, message, reason: finalReason })
       });
 
       if (res.ok) {
@@ -131,6 +135,46 @@ export default function ContactPage() {
                     placeholder="jane@example.com"
                   />
                 </div>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="inquiryReason" className="text-xs font-bold tracking-[0.3em] uppercase text-gray-400">Inquiry Reason</label>
+                  <div className="relative">
+                    <select
+                      id="inquiryReason"
+                      value={inquiryReason}
+                      onChange={(e) => setInquiryReason(e.target.value)}
+                      className="w-full border-b-2 border-black/10 py-4 bg-transparent outline-none focus:border-black transition-colors text-xl font-medium appearance-none cursor-pointer"
+                    >
+                      <option value="Bulk Inquiry">Bulk Inquiry</option>
+                      <option value="Listed Product">Listed Product</option>
+                      <option value="Category">Category</option>
+                      <option value="Other Reason">Other Reason</option>
+                    </select>
+                    {/* Custom Dropdown Arrow */}
+                    <div className="absolute inset-y-0 right-0 flex items-center pointer-events-none pr-2">
+                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                  </div>
+                </div>
+
+                {inquiryReason === 'Other Reason' && (
+                  <motion.div 
+                    initial={{ opacity: 0, height: 0 }} 
+                    animate={{ opacity: 1, height: 'auto' }} 
+                    className="flex flex-col gap-2 overflow-hidden"
+                  >
+                    <label htmlFor="otherReason" className="text-xs font-bold tracking-[0.3em] uppercase text-gray-400">Please Specify</label>
+                    <input 
+                      type="text" 
+                      id="otherReason" 
+                      required 
+                      value={otherReason}
+                      onChange={(e) => setOtherReason(e.target.value)}
+                      className="border-b-2 border-black/10 py-4 bg-transparent outline-none focus:border-black transition-colors text-xl font-medium"
+                      placeholder="Your specific reason..."
+                    />
+                  </motion.div>
+                )}
 
                 <div className="flex flex-col gap-2">
                   <label htmlFor="message" className="text-xs font-bold tracking-[0.3em] uppercase text-gray-400">Message</label>

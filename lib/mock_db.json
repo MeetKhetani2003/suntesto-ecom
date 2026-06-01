@@ -10,6 +10,17 @@
       "joined": "May 2026",
       "updatedAt": "2026-05-30T11:49:47.908Z",
       "_id": "mock-1780138815389"
+    },
+    {
+      "email": "mkdigitalnexus@gmail.com",
+      "name": "mk digital nexus",
+      "picture": "https://lh3.googleusercontent.com/a/ACg8ocLpgoV3v9EFEf_YvCkpmi2cPdKkwKy-Rzu3EVqOrdvel1no_g=s96-c",
+      "phone": "+1 (555) 382-9901",
+      "address": "128 Nature Way, Orchard Valley, CA 90210",
+      "tier": "Gold Tier Member",
+      "joined": "June 2026",
+      "updatedAt": "2026-06-01T13:13:27.432Z",
+      "_id": "mock-1780319607433"
     }
   ],
   "orders": [
@@ -71,7 +82,9 @@
           "date": "April 29, 2026"
         }
       ],
-      "_id": "mock-1780141787927-0"
+      "stock": 100,
+      "reserved": 0,
+      "_id": "mock-1780319607517-0"
     },
     {
       "id": "banana",
@@ -103,7 +116,9 @@
           "date": "May 05, 2026"
         }
       ],
-      "_id": "mock-1780141787927-1"
+      "stock": 100,
+      "reserved": 0,
+      "_id": "mock-1780319607517-1"
     },
     {
       "id": "strawberry",
@@ -142,7 +157,9 @@
           "date": "May 11, 2026"
         }
       ],
-      "_id": "mock-1780141787927-2"
+      "stock": 100,
+      "reserved": 0,
+      "_id": "mock-1780319607517-2"
     },
     {
       "id": "pineapple",
@@ -174,7 +191,9 @@
           "date": "May 22, 2026"
         }
       ],
-      "_id": "mock-1780141787927-3"
+      "stock": 100,
+      "reserved": 0,
+      "_id": "mock-1780319607517-3"
     },
     {
       "id": "lemon",
@@ -206,7 +225,9 @@
           "date": "May 27, 2026"
         }
       ],
-      "_id": "mock-1780141787927-4"
+      "stock": 100,
+      "reserved": 0,
+      "_id": "mock-1780319607517-4"
     },
     {
       "id": "choco-strawberry",
@@ -247,7 +268,9 @@
           "date": "May 14, 2026"
         }
       ],
-      "_id": "mock-1780141787927-5"
+      "stock": 100,
+      "reserved": 0,
+      "_id": "mock-1780319607517-5"
     },
     {
       "id": "choco-banana",
@@ -271,7 +294,9 @@
         "origin": "Ecuador / Belgium"
       },
       "reviews": [],
-      "_id": "mock-1780141787927-6"
+      "stock": 100,
+      "reserved": 0,
+      "_id": "mock-1780319607517-6"
     },
     {
       "id": "choco-mango",
@@ -295,7 +320,9 @@
         "origin": "Mexico"
       },
       "reviews": [],
-      "_id": "mock-1780141787927-7"
+      "stock": 100,
+      "reserved": 0,
+      "_id": "mock-1780319607517-7"
     },
     {
       "id": "strawberry-powder",
@@ -327,7 +354,9 @@
           "date": "May 02, 2026"
         }
       ],
-      "_id": "mock-1780141787927-8"
+      "stock": 100,
+      "reserved": 0,
+      "_id": "mock-1780319607517-8"
     },
     {
       "id": "mango-powder",
@@ -351,7 +380,9 @@
         "origin": "Mexico"
       },
       "reviews": [],
-      "_id": "mock-1780141787927-9"
+      "stock": 100,
+      "reserved": 0,
+      "_id": "mock-1780319607517-9"
     },
     {
       "id": "lemon-powder",
@@ -375,7 +406,9 @@
         "origin": "Spain"
       },
       "reviews": [],
-      "_id": "mock-1780141787927-10"
+      "stock": 100,
+      "reserved": 0,
+      "_id": "mock-1780319607517-10"
     },
     {
       "id": "bulk-frozen-pack",
@@ -400,7 +433,9 @@
         "origin": "Multisource"
       },
       "reviews": [],
-      "_id": "mock-1780141787927-11"
+      "stock": 100,
+      "reserved": 0,
+      "_id": "mock-1780319607517-11"
     },
     {
       "id": "bulk-variety-box",
@@ -425,7 +460,9 @@
         "origin": "Multisource"
       },
       "reviews": [],
-      "_id": "mock-1780141787927-12"
+      "stock": 100,
+      "reserved": 0,
+      "_id": "mock-1780319607517-12"
     },
     {
       "id": "taster-combo-pack",
@@ -450,7 +487,9 @@
         "origin": "Multisource"
       },
       "reviews": [],
-      "_id": "mock-1780141787927-13"
+      "stock": 100,
+      "reserved": 0,
+      "_id": "mock-1780319607517-13"
     },
     {
       "id": "choco-lover-combo",
@@ -474,7 +513,9 @@
         "origin": "Multisource"
       },
       "reviews": [],
-      "_id": "mock-1780141787927-14"
+      "stock": 100,
+      "reserved": 0,
+      "_id": "mock-1780319607517-14"
     }
   ],
   "files": [
@@ -547,6 +588,16 @@
       "filename": "SUSTENTO_POUCH_STRAWBERRY.jpg",
       "contentType": "image/jpeg",
       "uploadDate": "2026-05-30T11:00:15.658Z"
+    }
+  ],
+  "contact_inquiries": [
+    {
+      "name": "sfsdf",
+      "email": "meetkhetani1111@gmail.com",
+      "reason": "dfsdf",
+      "message": "sdffsd",
+      "createdAt": "2026-06-01T13:32:36.967Z",
+      "_id": "mock-1780320756967"
     }
   ]
 }

@@ -224,8 +224,7 @@ export const Navbar = () => {
             <Link href="/profile" className="hidden md:block cursor-pointer hover:opacity-50 transition-opacity">Profile</Link>
           ) : (
             <div className="hidden md:flex gap-6 items-center">
-              <button onClick={login} className="cursor-pointer hover:opacity-50 transition-opacity bg-transparent border-none p-0 text-inherit font-medium text-xs tracking-[0.2em] uppercase">Sign In</button>
-              <button onClick={login} className="cursor-pointer bg-white text-black px-5 py-2.5 rounded-full hover:bg-white/90 font-black text-[10px] tracking-[0.2em] uppercase transition-all duration-300 shadow-md">Sign Up</button>
+              <button onClick={login} className="cursor-pointer bg-white text-black px-5 py-2.5 rounded-full hover:bg-white/90 font-black text-[10px] tracking-[0.2em] uppercase transition-all duration-300 shadow-md">Sign In / Sign Up</button>
             </div>
           )}
 
@@ -306,7 +305,7 @@ export const Navbar = () => {
                   ) : (
                     <div className="flex flex-col gap-6 items-center">
                       <button onClick={() => { setIsMobileMenuOpen(false); login(); }} className="text-4xl md:text-6xl font-black tracking-tighter uppercase hover:text-amber-200 transition-colors bg-transparent border-none p-0 text-inherit cursor-pointer">
-                        Sign In
+                        Sign In / Sign Up
                       </button>
                     </div>
                   )}

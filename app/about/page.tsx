@@ -17,7 +17,7 @@ export default function AboutPage() {
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl md:text-[10vw] font-black tracking-tighter leading-[0.8] uppercase mb-12"
+            className="text-5xl sm:text-7xl md:text-[8vw] lg:text-[7vw] xl:text-[6.5vw] font-black tracking-tighter leading-[0.85] uppercase mb-12 break-words"
           >
             Nature.<br/>
             Uncompromised.

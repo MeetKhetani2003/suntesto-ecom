@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '@/lib/db';
+import { cookies } from 'next/headers';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -86,16 +87,16 @@ export async function GET(request: NextRequest) {
       console.error('Auto Database seeding sync skipped:', e);
     }
 
-    // 5. Establish HTTP-only session cookie
-    const response = NextResponse.redirect(new URL('/profile', request.url));
-    response.cookies.set('sustento-session', email.toLowerCase(), {
+    // 5. Establish HTTP-only session cookie using next/headers
+    const cookieStore = await cookies();
+    cookieStore.set('sustento-session', email.toLowerCase(), {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       maxAge: 60 * 60 * 24 * 7, // 1 week session
       path: '/',
     });
 
-    return response;
+    return NextResponse.redirect(new URL('/profile', request.url));
   } catch (dbError) {
     console.error('Database connection error in OAuth callback:', dbError);
     return NextResponse.json({ error: 'Database authentication sync failure' }, { status: 500 });

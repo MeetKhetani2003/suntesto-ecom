@@ -2,8 +2,9 @@
 
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { PRODUCTS, IMAGES, springConfig, fastSpring } from '@/lib/data';
 import { Footer } from '@/components/Footer';
 
@@ -159,16 +160,22 @@ const Hero = () => {
           style={{ x: mouseX, y: mouseY, rotateX, rotateY }}
           className="w-[140vw] md:w-[90vw] max-w-[1400px] h-[120%] preserve-3d flex items-center justify-center relative mt-12"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <motion.img 
+          <motion.div 
             initial={{ scale: 1.3, filter: "blur(20px)", opacity: 0, y: 50 }}
             animate={{ scale: 1.1, filter: "blur(0px)", opacity: 1, y: 0 }}
             transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-            src={IMAGES.mainHero} 
-            alt="Hero Collection" 
-            className="w-full h-full object-contain drop-shadow-[0_50px_50px_rgba(0,0,0,0.25)]"
-            draggable="false"
-          />
+            className="w-full h-full relative"
+          >
+            <Image 
+              src={IMAGES.mainHero} 
+              alt="Hero Collection" 
+              fill
+              priority
+              sizes="(max-width: 768px) 140vw, 90vw"
+              className="object-contain drop-shadow-[0_50px_50px_rgba(0,0,0,0.25)]"
+              draggable="false"
+            />
+          </motion.div>
         </motion.div>
 
         {/* Premium Floating Badge */}
@@ -176,7 +183,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.5, rotate: -45 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 1.5, delay: 1, ease: "backOut" }}
-          className="absolute top-10 -right-12 md:-right-24 z-30"
+          className="absolute top-10 right-4 md:right-20 z-30"
         >
           <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full bg-[#111] text-white flex items-center justify-center shadow-2xl">
             <motion.div 
@@ -488,7 +495,20 @@ const EcommerceGrid = () => {
                 <div className="flex justify-between items-start border-t border-black/10 pt-6">
                   <div>
                     <h3 className="text-2xl font-black tracking-tighter uppercase mb-2">{product.name}</h3>
-                    <p className="text-gray-500 text-xs tracking-widest uppercase">Freeze Dried • 20g</p>
+                    <p className="text-gray-500 text-xs tracking-widest uppercase mb-2">Freeze Dried • 20g</p>
+                    {(() => {
+                      const reviewsCount = product.reviews ? product.reviews.length : 0;
+                      const averageRating = reviewsCount > 0 
+                        ? product.reviews.reduce((acc: number, rev: any) => acc + rev.rating, 0) / reviewsCount 
+                        : 0;
+                      return (
+                        <div className="flex items-center gap-1.5">
+                          <Star size={12} className={averageRating > 0 ? "fill-amber-400 text-amber-400" : "fill-gray-300 text-gray-300"} />
+                          <span className="text-xs font-bold text-gray-700">{averageRating.toFixed(1)}</span>
+                          <span className="text-[10px] text-gray-400 font-medium">({reviewsCount} reviews)</span>
+                        </div>
+                      );
+                    })()}
                   </div>
                   <span className="text-xl font-medium tracking-tight">${product.price}</span>
                 </div>

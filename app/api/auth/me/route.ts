@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '@/lib/db';
+import { cookies } from 'next/headers';
 
 export async function GET(request: NextRequest) {
   try {
-    const sessionEmail = request.cookies.get('sustento-session')?.value;
+    const cookieStore = await cookies();
+    const sessionEmail = cookieStore.get('sustento-session')?.value;
     
     if (!sessionEmail) {
       return NextResponse.json({ authenticated: false, message: 'Unauthenticated session' }, { status: 401 });
@@ -37,7 +39,8 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const sessionEmail = request.cookies.get('sustento-session')?.value;
+    const cookieStore = await cookies();
+    const sessionEmail = cookieStore.get('sustento-session')?.value;
     
     if (!sessionEmail) {
       return NextResponse.json({ error: 'Unauthenticated session' }, { status: 401 });

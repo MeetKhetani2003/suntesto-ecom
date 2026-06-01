@@ -48,9 +48,14 @@ export default function AdminContactPage() {
                   {inq.createdAt ? new Date(inq.createdAt).toLocaleDateString() : 'N/A'}
                 </span>
               </div>
-              <span className="text-xs text-gray-500 font-light block mb-4">
+              <span className="text-xs text-gray-500 font-light block mb-2">
                 Email: <a href={`mailto:${inq.email}`} className="font-semibold text-indigo-600 hover:underline">{inq.email}</a>
               </span>
+              {inq.reason && (
+                <span className="text-[10px] font-bold text-gray-600 uppercase tracking-widest block mb-4">
+                  Reason: <span className="bg-gray-100 text-gray-800 px-2 py-0.5 rounded-full border border-gray-200">{inq.reason}</span>
+                </span>
+              )}
               {inq.message && (
                 <div className="bg-indigo-50/60 border border-indigo-100 p-4 rounded-2xl">
                   <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest block mb-1.5">Message</span>

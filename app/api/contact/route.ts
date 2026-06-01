@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, message } = body;
+    const { name, email, message, reason } = body;
 
     if (!name || !email || !message) {
       return NextResponse.json({ error: 'Missing required parameters (Name, Email, Message)' }, { status: 400 });
@@ -35,6 +35,7 @@ export async function POST(request: NextRequest) {
     const newInquiry = {
       name,
       email: email.toLowerCase().trim(),
+      reason: reason || 'General Inquiry',
       message,
       createdAt: new Date()
     };

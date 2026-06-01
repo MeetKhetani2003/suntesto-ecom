@@ -282,5 +282,5 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
-export const springConfig = { stiffness: 70, damping: 20, restDelta: 0.001 };
-export const fastSpring = { stiffness: 150, damping: 20 };
+export const springConfig = { stiffness: 120, damping: 24, restDelta: 0.001 };
+export const fastSpring = { stiffness: 200, damping: 25 };

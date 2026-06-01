@@ -199,7 +199,7 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ slug:
         
         {/* Left Side: Dynamic Gallery & Abstract Background */}
         <div 
-          className="w-full md:w-1/2 min-h-[60vh] md:min-h-screen sticky top-0 flex flex-col items-center justify-center p-8 md:p-16 overflow-hidden"
+          className="w-full md:w-1/2 relative md:sticky md:top-24 h-[60vh] md:h-[calc(100vh-6rem)] flex flex-col items-center justify-center p-8 md:p-12 overflow-hidden"
           style={{ backgroundColor: product.color }}
         >
           {/* Large Abstract Background Title */}
@@ -219,20 +219,20 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ slug:
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full h-full max-w-md z-10 flex items-center justify-center aspect-square"
+            className="w-full flex-1 max-w-md z-10 flex items-center justify-center relative min-h-0"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src={activeImage} 
               alt={product.name}
-              className="w-full h-full object-contain drop-shadow-2xl max-h-[50vh]"
+              className="w-full h-full object-contain drop-shadow-2xl"
               style={{ mixBlendMode: product.isDark && activeImage === product.image ? 'normal' : 'multiply' }}
             />
           </motion.div>
 
           {/* Clickable Image Gallery Thumbnails */}
           {product.gallery.length > 1 && (
-            <div className="flex gap-4 mt-10 justify-center z-20 relative">
+            <div className="flex gap-4 mt-6 justify-center z-20 relative shrink-0">
               {product.gallery.map((imgUrl: string, idx: number) => {
                 const isSelected = activeImage === imgUrl;
                 return (
@@ -493,6 +493,37 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ slug:
         </div>
 
       </main>
+
+      {/* Recommended Products Section */}
+      <section className="w-full max-w-[1600px] mx-auto px-8 md:px-20 py-20 border-t border-black/10 mt-10">
+        <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-12 text-center md:text-left">You May Also Like</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {PRODUCTS.filter(p => p.id !== product.id).slice(0, 4).map(p => (
+            <Link href={`/products/${p.id}`} key={p.id} className="group flex flex-col h-full cursor-pointer">
+              <div 
+                className="w-full aspect-[4/5] mb-6 relative overflow-hidden flex items-center justify-center p-8 transition-transform duration-700 ease-out group-hover:scale-[0.98] rounded-3xl"
+                style={{ backgroundColor: p.color }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src={p.image} 
+                  alt={p.name}
+                  className="w-full h-full object-contain drop-shadow-xl transition-transform duration-[1.5s] ease-out group-hover:scale-110"
+                  style={{ mixBlendMode: p.isDark ? 'normal' : 'multiply' }}
+                />
+              </div>
+              <div className="flex justify-between items-start pt-2 px-2">
+                <div>
+                  <h4 className="font-black uppercase tracking-tighter text-lg">{p.name}</h4>
+                  <p className="text-gray-500 text-[10px] tracking-widest uppercase font-bold">{p.category}</p>
+                </div>
+                <span className="font-bold">${p.price.toFixed(2)}</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <Footer />
 
       {/* Absolute Glassmorphic Bulk Order Inquiry Modal */}

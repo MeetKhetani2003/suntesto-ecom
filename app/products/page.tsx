@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { PRODUCTS } from '@/lib/data';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
-import { ChevronRight, ChevronLeft, ListFilter, Search, X } from 'lucide-react';
+import { ChevronRight, ChevronLeft, ListFilter, Search, X, Star } from 'lucide-react';
 
 export default function ProductsPage() {
   const [productsList, setProductsList] = useState<any[]>(PRODUCTS);
@@ -355,7 +355,20 @@ export default function ProductsPage() {
                       <div className="flex justify-between items-start border-t border-black/10 pt-5 mt-auto">
                         <div>
                           <h3 className="text-xl font-black tracking-tighter uppercase mb-1">{product.name}</h3>
-                          <p className="text-gray-500 text-[10px] tracking-widest uppercase font-bold">Freeze Dried • 20g</p>
+                          <p className="text-gray-500 text-[10px] tracking-widest uppercase font-bold mb-2">Freeze Dried • 20g</p>
+                          {(() => {
+                            const reviewsCount = product.reviews ? product.reviews.length : 0;
+                            const averageRating = reviewsCount > 0 
+                              ? product.reviews.reduce((acc: number, rev: any) => acc + rev.rating, 0) / reviewsCount 
+                              : 0;
+                            return (
+                              <div className="flex items-center gap-1">
+                                <Star size={10} className={averageRating > 0 ? "fill-amber-400 text-amber-400" : "fill-gray-300 text-gray-300"} />
+                                <span className="text-[10px] font-bold text-gray-700">{averageRating.toFixed(1)}</span>
+                                <span className="text-[9px] text-gray-400 font-medium">({reviewsCount} reviews)</span>
+                              </div>
+                            );
+                          })()}
                         </div>
                         <span className="text-lg font-bold tracking-tight">${product.price.toFixed(2)}</span>
                       </div>

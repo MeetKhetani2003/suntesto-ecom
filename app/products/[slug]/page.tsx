@@ -9,6 +9,7 @@ import { Footer } from '@/components/Footer';
 import { ArrowLeft, Star, Send, X, Check, ShoppingCart, HelpCircle, Lock, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useAuth } from '@/lib/AuthContext';
+import { ProductCard } from '@/components/ProductCard';
 
 import { useEffect } from 'react';
 
@@ -78,7 +79,6 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ slug:
   const product = productData;
 
   // New review form state
-  const [reviewName, setReviewName] = useState('');
   const [reviewComment, setReviewComment] = useState('');
   const [reviewRating, setReviewRating] = useState(5);
   const [hoverRating, setHoverRating] = useState<number | null>(null);
@@ -123,11 +123,15 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ slug:
   // Submit new review handler
   const handleReviewSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!reviewName.trim() || !reviewComment.trim()) return;
+    if (!user) {
+      setShowAuthModal(true);
+      return;
+    }
+    if (!reviewComment.trim()) return;
 
     const newReview: Review = {
       id: `r-${Date.now()}`,
-      userName: reviewName.trim(),
+      userName: user.name || 'Anonymous User',
       rating: reviewRating,
       comment: reviewComment.trim(),
       date: new Date().toLocaleDateString('en-US', {
@@ -138,7 +142,6 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ slug:
     };
 
     setReviewsList([newReview, ...reviewsList]);
-    setReviewName('');
     setReviewComment('');
     setReviewRating(5);
   };
@@ -425,14 +428,6 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ slug:
 
                 {/* Form fields */}
                 <div className="flex flex-col gap-3">
-                  <input
-                    type="text"
-                    required
-                    placeholder="Your Name"
-                    value={reviewName}
-                    onChange={(e) => setReviewName(e.target.value)}
-                    className="w-full bg-white px-4 py-2.5 rounded-xl border border-black/10 text-xs focus:outline-none focus:border-black/30"
-                  />
                   <textarea
                     required
                     rows={3}
@@ -499,27 +494,7 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ slug:
         <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-12 text-center md:text-left">You May Also Like</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {PRODUCTS.filter(p => p.id !== product.id).slice(0, 4).map(p => (
-            <Link href={`/products/${p.id}`} key={p.id} className="group flex flex-col h-full cursor-pointer">
-              <div 
-                className="w-full aspect-[4/5] mb-6 relative overflow-hidden flex items-center justify-center p-8 transition-transform duration-700 ease-out group-hover:scale-[0.98] rounded-3xl"
-                style={{ backgroundColor: p.color }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
-                  src={p.image} 
-                  alt={p.name}
-                  className="w-full h-full object-contain drop-shadow-xl transition-transform duration-[1.5s] ease-out group-hover:scale-110"
-                  style={{ mixBlendMode: p.isDark ? 'normal' : 'multiply' }}
-                />
-              </div>
-              <div className="flex justify-between items-start pt-2 px-2">
-                <div>
-                  <h4 className="font-black uppercase tracking-tighter text-lg">{p.name}</h4>
-                  <p className="text-gray-500 text-[10px] tracking-widest uppercase font-bold">{p.category}</p>
-                </div>
-                <span className="font-bold">${p.price.toFixed(2)}</span>
-              </div>
-            </Link>
+            <ProductCard key={p.id} product={p} />
           ))}
         </div>
       </section>

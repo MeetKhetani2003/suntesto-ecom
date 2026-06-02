@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { PRODUCTS, IMAGES, springConfig, fastSpring } from '@/lib/data';
 import { Footer } from '@/components/Footer';
+import { ProductCard } from '@/components/ProductCard';
 
 // --- COMPONENTS ---
 
@@ -378,7 +379,7 @@ const HorizontalProductShowcase = () => {
             return (
               <div 
                 key={product.id} 
-                className="w-screen h-full flex flex-col md:flex-row items-center justify-center relative px-8 md:px-24 overflow-hidden"
+                className="w-screen h-full flex flex-col md:flex-row items-center justify-start md:justify-center relative px-8 md:px-24 overflow-hidden pt-28 md:pt-0"
                 style={{ backgroundColor: product.color }}
               >
                 <motion.div 
@@ -393,7 +394,7 @@ const HorizontalProductShowcase = () => {
                   </h2>
                 </motion.div>
 
-                <div className="w-full md:w-5/12 z-10 flex flex-col justify-center text-left pt-24 md:pt-0 pl-0 md:pl-12">
+                <div className="w-full md:w-5/12 z-10 flex flex-col justify-center text-left pt-0 pl-0 md:pl-12">
                   <div className="overflow-hidden mb-6">
                     <motion.span 
                       initial={{ opacity: 0, y: "100%" }}
@@ -442,7 +443,7 @@ const HorizontalProductShowcase = () => {
                   </Link>
                 </div>
 
-                <div className="w-full md:w-7/12 h-full relative z-10 flex items-center justify-center mt-10 md:mt-0 pb-20 md:pb-0">
+                <div className="w-full md:w-7/12 flex-1 md:flex-none md:h-full relative z-10 flex items-center justify-center mt-4 md:mt-0 pb-8 md:pb-0 min-h-[30vh] w-full">
                   <InteractivePouch src={product.image} alt={product.name} isDark={product.isDark} />
                 </div>
               </div>
@@ -469,51 +470,15 @@ const EcommerceGrid = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
           {PRODUCTS.slice(0, 6).map((product, i) => (
-            <Link href={`/products/${product.id}`} key={product.id}>
-              <motion.div 
-                initial={{ opacity: 0, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group cursor-pointer flex flex-col"
-              >
-                <div 
-                  className="w-full aspect-[4/5] mb-8 relative overflow-hidden flex items-center justify-center p-12 transition-transform duration-700 ease-out group-hover:scale-[0.96]"
-                  style={{ backgroundColor: product.color }}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-full object-contain drop-shadow-2xl transition-transform duration-[1.5s] ease-out group-hover:scale-110"
-                    style={{ mixBlendMode: product.isDark ? 'normal' : 'multiply' }}
-                  />
-                  
-                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-
-                <div className="flex justify-between items-start border-t border-black/10 pt-6">
-                  <div>
-                    <h3 className="text-2xl font-black tracking-tighter uppercase mb-2">{product.name}</h3>
-                    <p className="text-gray-500 text-xs tracking-widest uppercase mb-2">Freeze Dried • 20g</p>
-                    {(() => {
-                      const reviewsCount = product.reviews ? product.reviews.length : 0;
-                      const averageRating = reviewsCount > 0 
-                        ? product.reviews.reduce((acc: number, rev: any) => acc + rev.rating, 0) / reviewsCount 
-                        : 0;
-                      return (
-                        <div className="flex items-center gap-1.5">
-                          <Star size={12} className={averageRating > 0 ? "fill-amber-400 text-amber-400" : "fill-gray-300 text-gray-300"} />
-                          <span className="text-xs font-bold text-gray-700">{averageRating.toFixed(1)}</span>
-                          <span className="text-[10px] text-gray-400 font-medium">({reviewsCount} reviews)</span>
-                        </div>
-                      );
-                    })()}
-                  </div>
-                  <span className="text-xl font-medium tracking-tight">${product.price}</span>
-                </div>
-              </motion.div>
-            </Link>
+            <motion.div 
+              key={product.id}
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <ProductCard product={product} />
+            </motion.div>
           ))}
         </div>
       </div>
